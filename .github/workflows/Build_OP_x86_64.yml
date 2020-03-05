@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #==============~~~===================================
 
-name: longcat_20200304_x86_64
+name: longcat_20200305_x86_64
 
 
 on: 
@@ -69,6 +69,14 @@ jobs:
       run: |
         ./scripts/feeds clean
         ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        
+    - name: Import external feeds
+      working-directory: ./openwrt
+      run: |
+        git clone https://github.com/Lienol/openwrt-package package/lienol
+        ./scripts/feeds clean
+        ./scripts/feeds update -a
         rm -rf feeds/lienol/lienol/ipt2socks
         rm -rf feeds/lienol/lienol/shadowsocksr-libev
         rm -rf feeds/lienol/lienol/pdnsd-alt
@@ -82,9 +90,8 @@ jobs:
         rm -rf package/lean/luci-app-pptp-server
         rm -rf package/lean/luci-app-v2ray-server
         ./scripts/feeds install -a
-        ./scripts/feeds install -a
-
-    - name: longcat - 20200301_x86_64
+    
+    - name: longcat - 20200305_x86_64
       env:
         CONFIG_FILE: 'x86_64.config'
       run: |
