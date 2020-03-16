@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #=================================================
 
-name: Build_x86_64
+name: longcat_x86_64
 
 on: 
   release:
@@ -68,7 +68,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
-    - name: Configuration Customization - Build_x86_64
+    - name: Configuration Customization - longcat_x86_64
       env:
         CONFIG_FILE: 'x86_64.config'
       run: |
